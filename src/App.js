@@ -1,23 +1,63 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import AddEmployee from './components/AddEmployee';
+import EmployeeList from './components/EmployeeList';
+import { db } from "./firebase-config";
 
+import { collection, getDocs, addDoc, doc, deleteDoc, updateDoc } from "firebase/firestore";
+ 
 function App() {
+  //global variables
+  //states for
+  const [firstname1, setFirstname1] = useState("");
+  const [lastname1, setLastname1] = useState("");
+  const [email1, setEmail1] = useState("");
+
+  //state for all employees
+  const [employees, setEmployees] = useState([]);
+
+  //database reference object
+  const employeesRef = collection(db, "employees");
+
+
+  //function to get employees
+  const getEmployees = async() => {
+    let data = await getDocs(employeesRef);
+    setEmployees(data.docs.map((doc)=>({...doc.data(), id: doc.id})));
+
+  }
+
+  //function to add employee
+  const addEmployee = async() => {
+    await addDoc(employeesRef, {firstname: firstname1, lastname: lastname1, email: email1})
+    getEmployees();
+
+  }
+
+  //function to delete
+  const deleteEmployee = async(id) => {
+    let employee =  doc(employeesRef, id);
+    await deleteDoc(employee);
+    getEmployees();
+  }
+
+  //update function
+  const updateEmployee = async(id) => {
+    let employee = doc(employeesRef, id);
+    await updateDoc(employee, {firstname:firstname1, lastname:lastname1, email:email1});
+    getEmployees();
+  }
+
+  //onload
+  useEffect(()=>{
+    getEmployees()
+  })
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='home'>
+        <AddEmployee  addEmployee={addEmployee} setFirstname={setFirstname1} setLastname={setLastname1} setEmail={setEmail1} />
+        <EmployeeList employees={employees} deleteEmployee={deleteEmployee} updateEmployee={updateEmployee}/>
+      </div>
     </div>
   );
 }
