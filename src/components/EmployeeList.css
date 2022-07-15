@@ -1,45 +1,40 @@
-.header{
-    margin-left: 43%;
-    margin-top: -20%;
+th, td{
+   border: 1px solid black;
+    margin-left: 4px; 
+}
+th{
+    
+    width: 25px;
 }
 
-.heading{
-    display: flex;
-    width: 500px;
-    height: 30px;
+td{
+    width:15px;
+
+}
+.td{
+    width:15px;
 }
 
-.transaction-item{
-    display: flex;
-    background-color: white;
-    color: black;
-    width: 500px;
-    margin-top: 5px;
-}
-table {
+
+.tbl{
     border: 2px solid black;
-    margin-left: 43%;
-    margin-top: -10%;
+    width: 500px;
+    border-collapse: collapse;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 350px;
 }
 
-thead {
-    background: darkgray;
-    color: black;
-    font-weight: bolder;
+
+h2{
+    text-align: left;
+    margin-left: 4px;
+}
+.btn-del{
+    color: crimson;
     
 }
-
-/*tr:nth-child(odd) {
-    background-color: rgba(0,0,0, 0.2);
-}*/
-
-tr:hover {
-    background-color: white;
-    color: black;
-}
-
-td {
-    width: 180px;
-    padding: 10px;
-    border: 2px solid black;
+.btn{
+    color: green;
 }

@@ -1,26 +1,21 @@
-.container{
-    margin-left: 1%;
-    justify-content: space-evenly;
-}
-h1{
-    background-color:lightgray;
-    margin-right: 60%;
-}
-
-h2{
-    margin-left: 0px;
-    margin-bottom: 50%;
-
+.addEmp{
+    border: 2px solid black;
+    width: 600px;
 }
 input{
-    padding-left: 50px;
-
+    width: 350px;
+    margin-left: 4px;
+    height: 30px;
+    
 }
-.btn{
-    background-color: green;
-    margin-left: 0px;
-    margin-top: 15px;
-    width: 250px;
-    height: 40px;
-    border-radius: 50px;
+
+.addEmp, .tbl div{
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+}
+.add{
+    width: 150px;
+    background-color: seagreen;
+    border-radius: 150px;
+    margin-left: 10px;
 }
